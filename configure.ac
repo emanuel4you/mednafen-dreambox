@@ -41,6 +41,8 @@ AC_DEFINE(_LARGEFILE_SOURCE, [1], [Define for fseeko and ftello on some hosts.])
 
 AM_CONDITIONAL(CROSS_COMPILING, [test x$cross_compiling != xno])
 
+AM_CONDITIONAL(HAVE_GL, [0])
+
 # sizeof tests need to come after largefile support macros
 
 AC_CHECK_TYPE(ptrdiff_t,long)
