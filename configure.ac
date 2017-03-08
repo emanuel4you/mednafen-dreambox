@@ -573,7 +573,8 @@ else
 	AC_DEFINE([PSS_STYLE],[1], [Defines the filesystem path-separator type.])
 
 	if test x$with_libsndfile = xyes; then
-		PKG_CHECK_MODULES(SNDFILE, sndfile >= 1.0.2, [], AC_MSG_ERROR([*** libsndfile >= 1.0.2 not found!]))
+		SNDFILE_LIBS="-lsndfile"
+		SNDFILE_CFLAGS=""
                 AC_DEFINE([HAVE_LIBSNDFILE], [1], [Define if we are compiling with libsndfile support.])
 		AM_CONDITIONAL(HAVE_LIBSNDFILE, true)
 	fi
