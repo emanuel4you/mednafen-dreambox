@@ -46,8 +46,10 @@
 #include "input.h"
 #include "Joystick.h"
 #include "video.h"
+#ifdef  HAVE_GL
 #include "opengl.h"
 #include "shader.h"
+#endif
 #include "sound.h"
 #include "netplay.h"
 #include "cheat.h"
