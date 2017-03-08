@@ -438,9 +438,9 @@ static struct ScalerDefinition
 };
 
 static MDFNGI *VideoGI;
-
+#ifdef  HAVE_GL
 static bool sdlhaveogl = false;
-
+#endif
 static int best_xres = 0, best_yres = 0;
 
 static int cur_xres, cur_yres, cur_flags;
@@ -448,7 +448,9 @@ static int cur_xres, cur_yres, cur_flags;
 static ScalerDefinition *CurrentScaler = NULL;
 
 static SDL_Surface *screen = NULL;
-//static OpenGL_Blitter *ogl_blitter = NULL;
+#ifdef  HAVE_GL
+static OpenGL_Blitter *ogl_blitter = NULL;
+#endif
 static SDL_Surface *IconSurface=NULL;
 
 static MDFN_Rect screen_dest_rect;
@@ -1087,7 +1089,7 @@ if
  pf_normal.Gshift = gs;
  pf_normal.Bshift = bs;
  pf_normal.Ashift = as;
-#ifdef HAVE_GL
+
  if(vdriver == VDRIVER_OVERLAY)
  {
   pf_overlay.bpp = 32;
@@ -1097,7 +1099,7 @@ if
   pf_overlay.Vshift = 16;
   pf_overlay.Ashift = 24;
  }
-#endif
+
  //SetPixelFormatHax((vdriver == VDRIVER_OVERLAY) ? pf_overlay : pf_normal); //rs, gs, bs, as);
 
  for(int i = 0; i < 2; i++)
