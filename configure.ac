@@ -459,11 +459,13 @@ CheckJACK()
 AC_HELP_STRING([--enable-jack], [support the JACK audio API [[default=yes]]]),
                   , enable_jack=yes)
     if test x$enable_jack = xyes; then
-        PKG_CHECK_MODULES(JACK, jack, [have_jack=yes], [have_jack=no])
+        have_jack=yes
 
         if test x$have_jack = xyes; then
                 AM_CONDITIONAL(HAVE_JACK, true)
                 AC_DEFINE([HAVE_JACK], [1], [Define if we are compiling with JACK support.])
+                JACK_LIBS=`pkg-config --libs jack`
+                JACK_CFLAGS=`pkg-config --cflags jack`
         fi
     fi
 
