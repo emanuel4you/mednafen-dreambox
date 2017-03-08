@@ -1196,7 +1196,7 @@ static void zlib_test(void)
  if((2 << ((cfl >> 6) & 0x3)) != sizeof(z_off_t))
  {
   assert(sizeof(z_off64_t) == 8);
-  assert(&gztell == &gztell64);
+  assert(&gztell == (off_t (*)(gzFile))&gztell64);
  }
  #else
  assert((2 << ((cfl >> 6) & 0x3)) == sizeof(z_off_t));
