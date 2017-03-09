@@ -41,7 +41,16 @@ AC_DEFINE(_LARGEFILE_SOURCE, [1], [Define for fseeko and ftello on some hosts.])
 
 AM_CONDITIONAL(CROSS_COMPILING, [test x$cross_compiling != xno])
 
-AM_CONDITIONAL(HAVE_GL, [0])
+AM_CONDITIONAL(HAVE_GL, false)
+
+AC_ARG_ENABLE(opengl,
+ AC_HELP_STRING([--enable-opengl], [build with GL [[default=yes]]]),
+                  , enable_opengl=yes)
+
+if test x$enable_opengl = xyes; then
+ AC_DEFINE([HAVE_GL], [1], [Define if we are compiling with opengl.])
+ AM_CONDITIONAL(HAVE_GL, true)
+fi
 
 # sizeof tests need to come after largefile support macros
 
